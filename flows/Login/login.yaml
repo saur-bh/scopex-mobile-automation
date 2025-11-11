@@ -1,0 +1,33 @@
+appId: com.scopex.scopexmobilev2
+name: Launch and Login application
+---
+- runScript: ../../elements/login.js
+- runScript: ../../utils/email.js
+- launchApp:
+    clearState: true
+- assertVisible:  ${output.loginPage.buttons.login}
+- assertVisible: ${output.loginPage.buttons.signUp}
+- assertVisible: ${output.loginPage.buttons.recipients}
+- tapOn: ${output.loginPage.buttons.recipients}
+- assertVisible: "Sign up to continue"
+- tapOn: "Log In"
+- assertVisible: "Enter your email address"
+- tapOn: ${output.loginPage.labels.termsAndConditions}
+- assertVisible:
+    text: ${output.loginPage.buttons.next}
+    enabled: false
+- tapOn: ${output.loginPage.labels.termsAndConditions}
+- assertVisible:
+    text: ${output.loginPage.buttons.next}
+    enabled: true
+- tapOn: ${output.loginPage.buttons.next}
+- assertVisible: ${output.loginPage.errors.missingEmail}
+- tapOn: "Enter your email address"
+- eraseText 
+- inputText: "123@te"
+- eraseText 
+- inputText: ${output.credentials.email}
+- tapOn: ${output.loginPage.buttons.next}
+- assertVisible: ${output.newuser.result.email}
+- stopApp
+

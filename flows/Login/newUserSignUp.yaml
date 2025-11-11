@@ -1,0 +1,6 @@
+appId: com.scopex.scopexmobilev2
+name: Launch and Login application
+---
+
+- inputText: ${TEMP_EMAIL}
+- inputText: ${TEMP_OTP}
